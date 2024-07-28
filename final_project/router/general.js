@@ -36,35 +36,6 @@ public_users.post("/register", (req,res) => {
    
 //  });
 
-
-// Get the book list available in the shop using async await
-public_users.get('/', (req, res) => {
-    const getBooks = () => {
-        return new Promise((resolve,reject) => {
-          setTimeout(() => {
-            resolve(books);
-            ),1000);
-        })
-    }
-    getBooks().then((books) => {
-        res.json(books);
-    }).catch((err) =>{
-      res.status(500).json({error: "An error occured"});
-    });
-      
-    //await res.send(JSON.stringify(books,null,4));
-  
-});
-
-
-// // Get book details based on ISBN
-// public_users.get('/isbn/:isbn',async (req, res)=>{
-  
-//   const ISBN = req.params.isbn;
-//   await res.send(books[ISBN]);    
- 
-//  });
-  
 // Get book details based on ISBN using Promises
 public_users.get('/isbn/:isbn', (req, res) =>{
     
@@ -172,5 +143,23 @@ public_users.get('/review/:isbn',async (req, res) => {
     await res.send(JSON.stringify(books[isbn].review),null,4);
   
 });
+
+// Get the book list available in the shop using async await
+public_users.get('/', (req, res) => {
+    const getBooks = () => {
+        return new Promise((resolve,reject) => {
+          setTimeout(() => {
+            resolve(books,1000);
+        })
+    }
+//    getBooks().then((books) => {
+//        res.json(books);
+//    }).catch((err) =>{
+//      res.status(500).json({error: "An error occured"});
+//    });
+      
+    //await res.send(JSON.stringify(books,null,4));
+  
+)}});
 
 module.exports.general = public_users;
